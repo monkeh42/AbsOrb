@@ -120,19 +120,18 @@
 		Please try updating or use a different browser.
 	</canvas>
 	<div id='status'>
-		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><img src="/orb_splash.png"><!--<div id ='status-progress-inner'></div>--></div>
+		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
 		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
-			<img src="/orb_splash.png">
-			<!--<div></div>
 			<div></div>
 			<div></div>
 			<div></div>
 			<div></div>
 			<div></div>
 			<div></div>
-			<div></div>-->
+			<div></div>
+			<div></div>
 		</div>
-		<div id='status-notice' class='godot' style='display: none;'><img src="/orb_splash.png"></div>
+		<div id='status-notice' class='godot' style='display: none;'></div>
 	</div>
 
 	<script type='text/javascript' src='index.js'></script>
@@ -192,7 +191,7 @@
 						break;
 					case 'indeterminate':
 						statusIndeterminate.style.display = 'block';
-						//animationCallbacks.push(animateStatusIndeterminate);
+						animationCallbacks.push(animateStatusIndeterminate);
 						break;
 					case 'notice':
 						statusNotice.style.display = 'block';
@@ -256,11 +255,11 @@
 				displayFailureNotice('WebGL not available');
 			} else {
 				setStatusMode('indeterminate');
-				setTimeout(function() { engine.setCanvas(canvas);
+				engine.setCanvas(canvas);
 				engine.startGame(EXECUTABLE_NAME, MAIN_PACK).then(() => {
 					setStatusMode('hidden');
 					initializing = false;
-				}, displayFailureNotice); }, 1000)
+				}, displayFailureNotice);
 			}
 		})();
 	//]]></script>
